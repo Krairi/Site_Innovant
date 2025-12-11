@@ -1,0 +1,7 @@
+{
+  "name": "GIVD - Gestionnaire Intelligent",
+  "description": "Gestionnaire de vie domestique néobrutaliste avec IA, OCR et gestion de stock.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
