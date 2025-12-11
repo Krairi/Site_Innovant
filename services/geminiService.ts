@@ -1,10 +1,20 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-// Access the API key from environment variables
-// Note: This requires the user to have VITE_GEMINI_API_KEY or REACT_APP_GEMINI_API_KEY set,
-// or conventionally process.env.API_KEY if using a bundler that supports it.
-// For this demo, we assume the environment variable is injected.
-const apiKey = process.env.API_KEY || ''; 
+// Access the API key safely. 
+// In Vite/Browser, process might not be defined. We check safe access.
+const getApiKey = () => {
+  try {
+    // Check if process.env exists (Node/Webpack/some Vite configs)
+    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+      return process.env.API_KEY;
+    }
+  } catch (e) {
+    // Ignore error
+  }
+  return '';
+};
+
+const apiKey = getApiKey();
 
 const ai = new GoogleGenAI({ apiKey });
 
